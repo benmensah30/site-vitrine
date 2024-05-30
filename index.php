@@ -1,5 +1,5 @@
 <?php if (isset($_COOKIE["id"])) {
-    header('location: ./pages/discussions.php');
+    header('location:./pages/discussions.php');
 }
 ?>
 
@@ -30,22 +30,23 @@
         <?php } ?>
 
         <label for="email">E-mail</label>
-        <input type="email" placeholder="Saisir l'e-mail ici ..." name="email" id="email" require minlength="6" maxlength="50">
+        <input type="email" placeholder="Saisir l'e-mail ici ..." id="email" name="email" require minlength="6" maxlength="50">
         <br /><br />
 
         <input type="hidden" name="source" value="login">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Saisir l'e-mail ici ..." name="password" id="password" require minlength="6" maxlength="50">
+        <input type="password" placeholder="Saisir le mot de passe ici ..."  id="password" name="password" require minlength="6" maxlength="50">
         <br /><br />
 
         <button class="button w-100">
             Se connecter
         </button>
-
         <p>
-            Pas encore de comte, <a href="/brief/pages/register.php">inscrivez-vous.</a>
+            Pas encore de compte, <a href="/brief/pages/register.php">inscrivez-vous.</a>
+            
         </p>
+
         </form>
     </div>
 

@@ -1,9 +1,9 @@
 <nav class="menu-bar">
-    <tabble>
+    <tabble width="100%">
         <tbody>
             <tr>
                 <td>
-                    <a href="/brief" class="logo-brand"></a>
+                    <a href="/brief" class="logo-brand">DSend</a>
                 </td>
                 <td>
                     <ul>

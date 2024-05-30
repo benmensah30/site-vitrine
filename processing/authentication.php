@@ -21,7 +21,7 @@ switch ($source) {
         $users = $userStatement->fetchAll();
 
         if (count($users) == 0) {
-            header('Location: ../?auth=error');
+            header('Location:../?auth=error');
         } else {
             foreach ($users as $user) {
                 setcookie(
@@ -37,19 +37,19 @@ switch ($source) {
         }
 
         break;
-
     case'register':
         $userStatement = $conn->prepare('SELECT * FROM users WHERE email = :email');
         $userStatement->execute([
             'email' => $email
         ]);
+
         $users = $userStatement->fetchAll();
 
         if (count($users) != 0) {
             header('Location: ../pages/register.php?email=error');
             exit();
         } else if($password != $confirm_password){
-            header('Location: ../pages/register.php?password=error');
+            header('Location:../pages/register.php?password=error');
             exit();
         } else {
 
@@ -65,7 +65,8 @@ switch ($source) {
                 'email' => $email,
                 'password' => $hashed_password
             ]);
-            $user = $userStatement->fetchAll();
+
+            $users = $userStatement->fetchAll();
 
             foreach ($users as $user) {
                 setcookie(
@@ -75,13 +76,10 @@ switch ($source) {
                     "/"
                 );
             }
-
             header("Location: ../pages/discussions.php");
         }
         break;
-    
     default;
         # code...
         break;
-    
 }

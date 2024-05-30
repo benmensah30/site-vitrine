@@ -1,7 +1,7 @@
 <?php
 if (!isset($_COOKIE["id"])){
     header('Location: ../');
-    exit;
+    exit();
 }
 
 require_once('../config/database.php');
@@ -34,20 +34,20 @@ require_once('../config/database.php');
             <div class="selected-user">
                 <div class="user-avatar <?= $user['color'] ?>"><?= strtoupper(substr($user['email'], 0, 1)) ?></div>
 
-                <div class="user-email"><small><?= $user['email'] ?></small></div>
+                <div class="user-email"><small> <?= $user['email'] ?></small></div>
             </div>
             <?php
         }
+
     ?>
 
-    <input type="hidden" id="user_id" value="<?= $_GET['id'] ?>">
+    <input type="hidden" id="user_id" value=" <?= $_GET['id'] ?>">
 
     <div class="wrap-content">
-
     </div>
 
     <div class="message-form">
-        <form method="get" id="message-form">
+        <form method="get" id="message_form">
             <table width="100%">
                 <tbody>
                     <tr>
@@ -73,36 +73,41 @@ require_once('../config/database.php');
 <script src="../assets/js/jquery.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $('#message_form').submit(function (e){
+    $(document).ready(function() {
+        $('#message_form').submit(function(e) {
             let messageText = $('#message_text').val().trim()
             e.preventDefault()
 
-            if(messageText){
+            if(messageText) {
+
                 $.ajax({
                     url: "/brief/processing/texting.php",
                     data: {
                         id: $('#user_id').val(),
                         text: messageText
                     },
-                    success: function (result) {
+                    success: function(result) {
                         $('#message_text').val('')
+
                     },
+
                 });
             }
         })
-
         setInterval(() => {
             window.scrollTo(0, window.innerHeight)
             $.ajax({
-                url:"/brief/processing/messages.php",
+                url: "/brief/processing/messages.php",
                 data: {
-                    id: $('#user_id').val()
+                    id: $('#user_id').val(),
                 },
-                success: function (result) {
+                success: function(result) {
                     $(".wrap-content").html(result);
+                    console.log(result)
+                    
                 }
             });
+            
         },1000)
     })
 </script>
